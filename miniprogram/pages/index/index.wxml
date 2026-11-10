@@ -1,0 +1,59 @@
+<!-- index.wxml -->
+<view class="container">
+  <view class="header-bg"></view>
+
+  <!-- 机构信息卡片 -->
+  <view class="flat-card org-card">
+    <image class="org-logo" src="{{orgInfo.logo_url || '/images/default-logo.png'}}" mode="aspectFill"></image>
+    <text class="org-name">{{orgInfo.name || '犬影村'}}</text>
+    <text class="org-desc">{{orgInfo.description || '加载中...'}}</text>
+    <view class="badge" wx:if="{{orgInfo.contact_phone}}">联系: {{orgInfo.contact_phone}}</view>
+  </view>
+
+  <!-- 快捷链接 -->
+  <view class="section-title">快捷入口</view>
+  <view class="quick-links">
+    <view class="quick-card" bindtap="goAuth">
+      <view class="quick-icon">🏅</view>
+      <view class="quick-text">
+        <text class="quick-title">咨询师认证</text>
+        <text class="quick-desc">成为认证柔丝辅导师</text>
+      </view>
+      <text class="quick-arrow">›</text>
+    </view>
+    <view class="quick-card" bindtap="goShop">
+      <view class="quick-icon">🛒</view>
+      <view class="quick-text">
+        <text class="quick-title">微店购买</text>
+        <text class="quick-desc">前往官方微店选购课程</text>
+      </view>
+      <text class="quick-arrow">›</text>
+    </view>
+  </view>
+
+  <!-- 精品课程列表 -->
+  <view class="section-title">精品课目</view>
+  <view class="course-list">
+    <!-- 加载中 -->
+    <view wx:if="{{loading}}" style="text-align:center; padding: 60rpx; color: var(--text-light)">
+      <text>加载中...</text>
+    </view>
+    <!-- 课程列表 -->
+    <block wx:elif="{{courses.length > 0}}">
+      <view class="flat-card course-item" wx:for="{{courses}}" wx:key="id" bindtap="goToDetails" data-id="{{item.id}}">
+        <image class="course-cover" src="{{item.cover_url || '/images/default-course.png'}}" mode="aspectFill"></image>
+        <view class="course-info">
+          <view class="course-title">{{item.title}}</view>
+          <view class="course-desc">{{item.description}}</view>
+          <view class="course-footer">
+            <view class="btn-mini">去参与</view>
+          </view>
+        </view>
+      </view>
+    </block>
+    <!-- 无课程 -->
+    <view wx:else style="text-align:center; padding: 60rpx; color: var(--text-light)">
+      ~ 汪汪，暂无课程上线 ~
+    </view>
+  </view>
+</view>

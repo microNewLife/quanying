@@ -1,0 +1,20 @@
+**/node_modules/
+**/dist/
+**/release/
+**/.env
+**/.env.*
+!**/.env.example
+**/*.log
+**/.DS_Store
+admin/test-results/
+backups/
+
+# Local rosters, configuration, generated dependencies and caches
+/local-data/
+/miniprogram/env.js
+**/project.private.config.json
+**/miniprogram_npm/
+**/__pycache__/
+*.py[cod]
+/supabase/.temp/
+/supabase/.branches/

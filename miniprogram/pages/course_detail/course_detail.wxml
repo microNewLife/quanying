@@ -1,0 +1,48 @@
+<!-- pages/course_detail/course_detail.wxml -->
+<view class="container">
+  <!-- 骨架屏加载中 -->
+  <view wx:if="{{loading}}" class="loading-state">
+    <view class="loading-spinner"></view>
+    <text>正在为你加载...</text>
+  </view>
+
+  <block wx:else>
+    <!-- 1. 课程封面 -->
+    <image class="course-cover" src="{{course.cover_url || '/images/default-course.png'}}" mode="aspectFill"></image>
+
+    <!-- 2. 课程主要内容 -->
+    <view class="content-wrapper">
+      <view class="course-header">
+        <text class="course-title">{{course.title}}</text>
+        <view class="tag-row" wx:if="{{course.sort_order <= 5}}">
+          <text class="tag-hot">精品推荐</text>
+        </view>
+      </view>
+
+      <view class="divider"></view>
+
+      <!-- 课程简介部分 -->
+      <view class="section">
+        <view class="section-title">课程简介</view>
+        <view class="course-desc">
+          <text user-select="true">{{course.description || '暂无详细介绍喵~'}}</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 3. 底部悬浮按钮栏 -->
+    <view class="footer-bar">
+      <view class="btn-home" bindtap="goHome">
+        <view class="icon-home">🏠</view>
+        <text>首页</text>
+      </view>
+
+      <button
+        class="btn-primary {{!course.external_link ? 'disabled' : ''}}"
+        bindtap="handleAction"
+      >
+        {{course.external_link ? '立即参与 (微店)' : '暂未开启报名'}}
+      </button>
+    </view>
+  </block>
+</view>

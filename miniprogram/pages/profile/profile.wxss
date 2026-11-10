@@ -1,0 +1,133 @@
+/* pages/profile/profile.wxss */
+.profile-header {
+  background-color: var(--primary-color);
+  padding: 60rpx 40rpx;
+  display: flex;
+  align-items: center;
+  color: white;
+  border-bottom-left-radius: var(--radius-lg);
+  border-bottom-right-radius: var(--radius-lg);
+  box-shadow: 0 4rpx 15rpx rgba(242, 143, 59, 0.2);
+}
+
+.avatar {
+  width: 140rpx;
+  height: 140rpx;
+  border-radius: 50%;
+  border: 4rpx solid rgba(255, 255, 255, 0.8);
+  margin-right: 30rpx;
+  background-color: #eee;
+}
+
+.user-info {
+  flex: 1;
+}
+
+.nickname {
+  font-size: 38rpx;
+  font-weight: bold;
+  margin-bottom: 10rpx;
+}
+
+.phone {
+  font-size: 28rpx;
+  opacity: 0.9;
+  margin-bottom: 15rpx;
+}
+
+.level-tag {
+  display: inline-block;
+  font-size: 22rpx;
+  background-color: white;
+  color: var(--primary-color);
+  padding: 4rpx 16rpx;
+  border-radius: 30rpx;
+  font-weight: 500;
+}
+
+.btn-login {
+  background-color: white;
+  color: var(--primary-color);
+  font-size: 32rpx;
+  font-weight: 600;
+  border-radius: 40rpx;
+  padding: 0 40rpx;
+  margin: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 80rpx;
+  border: none;
+}
+.btn-login::after {
+  display: none; /* 移除微信按钮边框 */
+}
+
+/* 进度列表部分 */
+.progress-section {
+  padding: 20rpx 10rpx;
+}
+
+.section-title {
+  font-size: 34rpx;
+  font-weight: 600;
+  margin: 30rpx;
+  color: var(--text-main);
+}
+
+.progress-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.course-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1rpx dashed var(--border-color);
+  padding-bottom: 20rpx;
+  margin-bottom: 20rpx;
+}
+
+.c-title {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: var(--text-main);
+}
+
+.c-time {
+  font-size: 24rpx;
+  color: var(--text-desc);
+}
+
+.progress-content {
+  display: flex;
+  flex-direction: column;
+  gap: 16rpx;
+}
+
+.p-text {
+  font-size: 28rpx;
+  color: var(--text-main);
+}
+
+.highlight {
+  color: var(--primary-color);
+  font-weight: bold;
+}
+
+.remarks {
+  font-size: 26rpx;
+  color: var(--text-desc);
+  background-color: var(--bg-color);
+  padding: 16rpx;
+  border-radius: var(--radius-sm);
+  line-height: 1.5;
+}
+
+.empty-state {
+  text-align: center;
+  color: var(--text-light);
+  padding: 60rpx;
+  font-size: 28rpx;
+}

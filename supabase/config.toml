@@ -1,0 +1,3 @@
+[functions.admin-login]
+# A login endpoint authenticates with the supplied username/password, before a session exists.
+verify_jwt = false

@@ -1,0 +1,83 @@
+<!-- pages/teacher/teacher.wxml -->
+<view class="container">
+  <view class="page-header">
+    <view class="title">犬影名师队伍</view>
+    <view class="subtitle">1v1 专属行为矫正与陪伴</view>
+  </view>
+
+  <!-- 搜索 & 筛选区域 -->
+  <view class="filter-bar">
+    <!-- 姓名搜索框 -->
+    <view class="search-box">
+      <text class="search-icon">🔍</text>
+      <input
+        class="search-input"
+        placeholder="搜索讲师姓名"
+        placeholder-class="search-placeholder"
+        value="{{searchName}}"
+        bindinput="onSearchInput"
+      />
+    </view>
+
+    <!-- 资格标签筛选 -->
+    <scroll-view class="tag-scroll" scroll-x enable-flex>
+      <view class="tag-list">
+        <!-- "全部" 标签 -->
+        <view
+          class="tag-item {{selectedTag === '' ? 'tag-active' : ''}}"
+          bindtap="onTagTap"
+          data-tag=""
+        >全部</view>
+        <!-- 动态资格标签 -->
+        <view
+          wx:for="{{qualificationTags}}"
+          wx:key="*this"
+          class="tag-item {{selectedTag === item ? 'tag-active' : ''}}"
+          bindtap="onTagTap"
+          data-tag="{{item}}"
+        >{{item}}</view>
+      </view>
+    </scroll-view>
+  </view>
+
+  <!-- 结果统计 -->
+  <view class="result-count" wx:if="{{!loading && !loadError}}">
+    共 {{filteredTeachers.length}} 位讲师
+  </view>
+
+  <view class="teacher-list">
+    <block wx:if="{{filteredTeachers.length > 0}}">
+      <view class="flat-card teacher-card" wx:for="{{filteredTeachers}}" wx:key="id">
+        <view class="teacher-header">
+          <view class="cert-icon">🏅</view>
+          <view class="info">
+            <view class="name">{{item.certificate_name}}</view>
+            <view class="qualification-tag">{{item.qualification || '认证辅导师'}}</view>
+          </view>
+        </view>
+        <view class="cert-details" wx:for="{{item.certifications}}" wx:for-item="cert" wx:key="id">
+          <view class="detail-item">
+            <text class="label">证书编号：</text>
+            <text class="value">{{cert.certificate_no}}</text>
+          </view>
+          <view class="detail-item">
+            <text class="label">认证时间：</text>
+            <text class="value">{{cert.date_text}}</text>
+          </view>
+        </view>
+        <view class="actions">
+          <view class="btn-check" bindtap="goToDetail" data-id="{{item.id}}">详情</view>
+        </view>
+      </view>
+    </block>
+
+    <view wx:elif="{{loading}}" class="empty-state">
+      <text>加载中...</text>
+    </view>
+
+    <view wx:elif="{{loadError}}" class="empty-state"><text>{{loadError}}</text><button bindtap="fetchTeachers">重试</button></view>
+    <view wx:else class="empty-state">
+      <text>没有找到符合条件的讲师喵~</text>
+    </view>
+  </view>
+</view>

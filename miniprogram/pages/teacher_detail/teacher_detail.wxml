@@ -1,0 +1,125 @@
+<!-- miniprogram/pages/teacher_detail/teacher_detail.wxml -->
+<view class="detail-container {{loading ? 'loading' : ''}}">
+  <block wx:if="{{!loading && teacher}}">
+    <!-- 1. 顶部全屏风格美照 (沉浸式体验) -->
+    <view class="teacher-hero">
+      <image
+        class="main-photo"
+        src="{{teacher.photo_url || 'https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?q=80&w=1000&auto=format&fit=crop'}}"
+        mode="aspectFill"
+      ></image>
+      <view class="photo-mask"></view>
+      <view class="hero-content">
+        <view class="name-section">
+          <text class="teacher-name">{{teacher.certificate_name}}</text>
+          <view class="verified-badge">
+            <text class="icon-verified">🛡️</text>
+            <text>体系认证</text>
+          </view>
+        </view>
+        <view class="qualification-text">{{teacher.qualification || '认证辅导师'}}</view>
+      </view>
+    </view>
+
+    <!-- 2. 内容卡片区域 -->
+    <view class="card-area">
+      <!-- 标签展示 -->
+      <view class="info-section animate-up" wx:if="{{teacher.tags && teacher.tags.length > 0}}">
+        <view class="section-header">
+          <view class="indicator"></view>
+          <text class="title-text">专业擅长</text>
+        </view>
+        <view class="tag-box">
+          <view class="custom-tag" wx:for="{{teacher.tags}}" wx:key="*this">
+            <text class="tag-symbol">#</text>
+            <text class="tag-content">{{item}}</text>
+          </view>
+        </view>
+      </view>
+
+      <!-- 个人简介 -->
+      <view class="info-section animate-up" style="animation-delay: 0.1s;">
+        <view class="section-header">
+          <view class="indicator"></view>
+          <text class="title-text">讲师简介</text>
+        </view>
+        <view class="description-view">
+          <text class="desc-content" selectable>{{teacher.description || '这位老师很低调，还没有写个人简介哦喵~'}}</text>
+        </view>
+      </view>
+
+      <!-- 证书信息（底部收纳） -->
+      <view class="cert-info-card animate-up" style="animation-delay: 0.2s;" wx:for="{{teacher.certifications}}" wx:key="id">
+        <view class="cert-row"><text class="cert-label">认证资格</text><text class="cert-val">{{item.qualification}}</text></view>
+        <view class="cert-row">
+          <text class="cert-label">证书编号</text>
+          <text class="cert-val">{{item.certificate_no}}</text>
+        </view>
+        <view class="cert-divider"></view>
+        <view class="cert-row">
+          <text class="cert-label">证书颁发</text>
+          <text class="cert-val">{{item.date_text}}</text>
+        </view>
+        <view class="cert-row" wx:if="{{item.recent_text}}"><text class="cert-label">最近认证</text><text class="cert-val">{{item.recent_text}}</text></view>
+      </view>
+    </view>
+
+    <!-- 图片分享卡片 -->
+    <view class="share-card-wrap animate-up" style="animation-delay: 0.25s;">
+      <view class="share-card">
+        <!-- 卡片顶部标签 -->
+        <view class="share-card-header">
+          <text class="share-label">长按识别二维码 · 预约咨询</text>
+        </view>
+        <!-- 卡片主体：头像 + 信息 + 二维码 -->
+        <view class="share-card-body">
+          <view class="share-left">
+            <image
+              class="share-avatar"
+              src="{{teacher.photo_url || 'https://images.unsplash.com/photo-1583511655857-d19b40a7a54e?q=80&w=200&auto=format&fit=crop'}}"
+              mode="aspectFill"
+            ></image>
+            <view class="share-teacher-info">
+              <text class="share-name">{{teacher.certificate_name}}</text>
+              <text class="share-qual">{{teacher.qualification || '认证辅导师'}}</text>
+            </view>
+          </view>
+          <view class="share-right">
+            <!-- 直接展示图片 -->
+            <image wx:if="{{teacher.qrcode_url}}" class="share-qr-img" src="{{teacher.qrcode_url}}" mode="aspectFit" show-menu-by-longpress="{{true}}"></image>
+            <text wx:else>暂未提供联系方式</text>
+          </view>
+        </view>
+        <!-- 卡片底部品牌 -->
+        <view class="share-card-footer">
+          <text class="share-brand">🦮 犬影村 · 专业化犬类行为咨询服务</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 底部操作位 -->
+    <view class="bottom-action animate-up" style="animation-delay: 0.3s;">
+      <button class="btn-primary btn-share-teacher" bindtap="onShareAppMessage" open-type="share">分享讲师</button>
+      <button class="btn-secondary" bindtap="generateShareCard">图片分享</button>
+    </view>
+
+    <!-- 分享图片预览弹窗 -->
+    <view class="share-preview-wrap" wx:if="{{shareCardPath}}" bindtap="closeSharePreview">
+      <view class="share-preview" catchtap="preventBubble">
+        <image class="share-preview-img" src="{{shareCardPath}}" mode="widthFix" show-menu-by-longpress></image>
+        <view class="share-preview-tip">长按图片发送给朋友 · 保存到相册</view>
+        <button class="btn-save" bindtap="saveShareCard">保存到相册</button>
+      </view>
+    </view>
+
+    <!-- 隐藏 Canvas 用于绘制分享图（width/height 为物理像素，750*1200） -->
+    <canvas canvas-id="shareCanvas" id="shareCanvas" class="hide-canvas" style="width:750px;height:1200px;"></canvas>
+  </block>
+
+  <view wx:if="{{!loading && loadError}}" class="loading-wrap"><text>{{loadError}}</text><button bindtap="retryLoad">重试</button></view>
+  <!-- 加载状态 -->
+  <view class="loading-wrap" wx:if="{{loading}}">
+    <view class="loader-dot"></view>
+    <text class="loading-txt">正在整理讲师档案...</text>
+  </view>
+</view>

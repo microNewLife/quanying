@@ -1,0 +1,47 @@
+<!-- pages/profile/profile.wxml -->
+<view class="container">
+
+  <!-- 头部用户信息区 -->
+  <view class="profile-header">
+    <image class="avatar" src="{{userInfo.avatar_url || '/images/default-avatar.png'}}" mode="aspectFill"></image>
+    <view class="user-info" wx:if="{{isLogin}}">
+      <view class="nickname">{{userInfo.display_name || '犬影学员'}}</view>
+      <view class="phone">{{userInfo.phone}}</view>
+      <view class="level-tag">{{userInfo.member_level || '普通会员'}}</view>
+    </view>
+    <view class="user-info" wx:else>
+    <!-- <button class="btn-login" open-type="getPhoneNumber" bindgetphonenumber="onGetPhoneNumber">
+    微信一键登录
+    </button> -->
+    </view>
+  </view>
+
+  <!-- 课程进度展示模块 -->
+  <view class="progress-section" wx:if="{{isLogin}}">
+    <view class="section-title">我的学习进度</view>
+
+    <view class="progress-list" wx:if="{{progressList.length > 0}}">
+      <view class="flat-card progress-card" wx:for="{{progressList}}" wx:key="id">
+        <view class="course-header">
+          <text class="c-title">{{item.courses.title}}</text>
+          <text class="c-time">{{item.updated_at}}</text>
+        </view>
+        <view class="progress-content">
+          <view class="p-text">目前进度: <text class="highlight">{{item.progress_text || '待定'}}</text></view>
+          <view class="remarks" wx:if="{{item.remarks}}">导师评语: {{item.remarks}}</view>
+        </view>
+      </view>
+    </view>
+
+    <view wx:else class="empty-state">
+      <text>系统里还没有你的进度记录哦，快去报名吧！</text>
+    </view>
+  </view>
+
+  <view class="progress-section" wx:else>
+    <view class="empty-state" style="margin-top: 150rpx;">
+      <text>请先登录查看您的专属进度报告</text>
+    </view>
+  </view>
+
+</view>

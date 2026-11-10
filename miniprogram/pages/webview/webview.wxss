@@ -1,0 +1,2 @@
+/* pages/webview/webview.wxss */
+/* web-view 组件会自动填充全屏，无需额外样式 */

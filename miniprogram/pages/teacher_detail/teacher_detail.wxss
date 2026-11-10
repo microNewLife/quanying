@@ -1,0 +1,472 @@
+/* miniprogram/pages/teacher_detail/teacher_detail.wxss */
+.detail-container {
+  min-height: 100vh;
+  background-color: #f8f9fa;
+  padding-bottom: 220rpx;
+}
+
+/* 1. 顶部沉浸式照片 */
+.teacher-hero {
+  position: relative;
+  width: 100%;
+  height: 750rpx;
+  background: #222;
+}
+
+.main-photo {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.photo-mask {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 450rpx;
+  background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.4) 50%, transparent 100%);
+}
+
+.hero-content {
+  position: absolute;
+  bottom: 80rpx;
+  left: 40rpx;
+  right: 40rpx;
+  color: #fff;
+}
+
+.name-section {
+  display: flex;
+  align-items: baseline;
+  gap: 24rpx;
+}
+
+.teacher-name {
+  font-size: 60rpx;
+  font-weight: 700;
+  letter-spacing: 2rpx;
+  text-shadow: 0 4rpx 10rpx rgba(0,0,0,0.3);
+}
+
+.verified-badge {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10rpx);
+  padding: 6rpx 20rpx;
+  border-radius: 40rpx;
+  font-size: 22rpx;
+  display: flex;
+  align-items: center;
+  gap: 8rpx;
+  border: 1rpx solid rgba(255, 255, 255, 0.25);
+}
+
+.qualification-text {
+  font-size: 34rpx;
+  opacity: 0.95;
+  margin-top: 12rpx;
+  font-weight: 300;
+}
+
+/* 2. 内容区域 */
+.card-area {
+  margin-top: -40rpx;
+  background: #f8f9fa;
+  border-radius: 48rpx 48rpx 0 0;
+  padding: 60rpx 40rpx 40rpx;
+  position: relative;
+  z-index: 10;
+}
+
+.info-section {
+  margin-bottom: 70rpx;
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+  margin-bottom: 30rpx;
+}
+
+.indicator {
+  width: 8rpx;
+  height: 36rpx;
+  background: #F28F3B;
+  border-radius: 6rpx;
+}
+
+.title-text {
+  font-size: 36rpx;
+  font-weight: 700;
+  color: #1a1a1a;
+}
+
+/* 标签云 */
+.tag-box {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20rpx;
+}
+
+.custom-tag {
+  background: #fff;
+  border: 1rpx solid #efefef;
+  padding: 12rpx 32rpx;
+  border-radius: 50rpx;
+  display: flex;
+  align-items: center;
+  gap: 8rpx;
+  box-shadow: 0 4rpx 15rpx rgba(0,0,0,0.03);
+}
+
+.tag-symbol {
+  color: #F28F3B;
+  font-weight: bold;
+  font-size: 24rpx;
+}
+
+.tag-content {
+  font-size: 28rpx;
+  color: #4a4a4a;
+}
+
+/* 详情描述 */
+.description-view {
+  background: #fff;
+  padding: 40rpx;
+  border-radius: 32rpx;
+  line-height: 1.85;
+  color: #3d3d3d;
+  font-size: 30rpx;
+  box-shadow: 0 6rpx 20rpx rgba(0,0,0,0.03);
+  border: 1rpx solid rgba(0,0,0,0.01);
+}
+
+.desc-content {
+  display: block;
+  white-space: pre-wrap;
+}
+
+/* 证书底部卡片 */
+.cert-info-card {
+  background: linear-gradient(135deg, #1f2a35 0%, #0c1116 100%);
+  padding: 44rpx;
+  border-radius: 32rpx;
+  color: #fff;
+  margin-top: 40rpx;
+  box-shadow: 0 10rpx 30rpx rgba(0,0,0,0.15);
+}
+
+.cert-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cert-label {
+  font-size: 24rpx;
+  color: rgba(255,255,255,0.45);
+  letter-spacing: 1rpx;
+}
+
+.cert-val {
+  font-size: 28rpx;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+.cert-divider {
+  height: 1rpx;
+  background: rgba(255,255,255,0.08);
+  margin: 30rpx 0;
+}
+
+/* 图片分享卡片 */
+.share-card-wrap {
+  margin-top: 40rpx;
+  padding: 0 20rpx;
+}
+
+.share-card {
+  background: linear-gradient(135deg, #fff8f2 0%, #fff 100%);
+  border-radius: 32rpx;
+  border: 1rpx solid rgba(242, 143, 59, 0.2);
+  overflow: hidden;
+  box-shadow: 0 8rpx 30rpx rgba(242, 143, 59, 0.1);
+}
+
+.share-card-header {
+  background: linear-gradient(to right, #F28F3B, #ff7b00);
+  padding: 18rpx 36rpx;
+  text-align: center;
+}
+
+.share-label {
+  font-size: 24rpx;
+  color: rgba(255, 255, 255, 0.95);
+  letter-spacing: 2rpx;
+  font-weight: 500;
+}
+
+.share-card-body {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 36rpx;
+  gap: 30rpx;
+}
+
+.share-left {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 24rpx;
+}
+
+.share-avatar {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 50%;
+  border: 4rpx solid #F28F3B;
+  background: #f0f0f0;
+  flex-shrink: 0;
+}
+
+.share-teacher-info {
+  display: flex;
+  flex-direction: column;
+  gap: 10rpx;
+}
+
+.share-name {
+  font-size: 34rpx;
+  font-weight: 700;
+  color: #1a1a1a;
+}
+
+.share-qual {
+  font-size: 24rpx;
+  color: #F28F3B;
+  font-weight: 500;
+}
+
+.share-right {
+  flex-shrink: 0;
+}
+
+.share-qr-img {
+  width: 160rpx;
+  height: 160rpx;
+  background: #fafafa;
+  border-radius: 16rpx;
+  border: 2rpx solid rgba(0, 0, 0, 0.05);
+}
+
+.share-card-footer {
+  background: #f8f9fa;
+  padding: 20rpx 36rpx;
+  text-align: center;
+  border-top: 1rpx solid rgba(0, 0, 0, 0.04);
+}
+
+.share-brand {
+  font-size: 22rpx;
+  color: #a0a0a0;
+  letter-spacing: 1rpx;
+}
+
+/* 分享图片预览弹窗 */
+.share-preview-wrap {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.65);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+.share-preview {
+  background: #fff;
+  border-radius: 24rpx;
+  padding: 30rpx;
+  max-width: 600rpx;
+  width: 85%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24rpx;
+}
+
+.share-preview-img {
+  width: 100%;
+  border-radius: 16rpx;
+  background: #f8f8f8;
+}
+
+.share-preview-tip {
+  font-size: 24rpx;
+  color: #999;
+  text-align: center;
+}
+
+.share-action-row {
+  display: flex;
+  flex-direction: row;
+  gap: 20rpx;
+  width: 100%;
+}
+
+.btn-share-friend {
+  flex: 1;
+  height: 88rpx;
+  background: #07c160;
+  color: #fff;
+  border-radius: 44rpx;
+  font-size: 30rpx;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+}
+
+.btn-save {
+  width: 100%;
+  height: 88rpx;
+  background: linear-gradient(135deg, #F28F3B, #ff7b00);
+  color: #fff;
+  border-radius: 44rpx;
+  font-size: 30rpx;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  margin-top: 8rpx;
+}
+
+/* 隐藏 Canvas */
+.hide-canvas {
+  position: fixed;
+  left: -9999px;
+  top: -9999px;
+  width: 750px;
+  height: 1200px;
+}
+
+/* 底部按钮 */
+.bottom-action {
+  display: flex;
+  flex-direction: row;
+  gap: 20rpx;
+  padding: 20rpx 24rpx 40rpx;
+}
+
+.bottom-action .btn-primary,
+.bottom-action .btn-secondary {
+  flex: 1;
+  width: 100%;
+}
+
+.btn-share-teacher {
+  background: #07c160 !important;
+  color: #fff !important;
+  box-shadow: 0 8rpx 20rpx rgba(7, 193, 96, 0.3) !important;
+}
+
+.btn-secondary {
+  background-color: #fff;
+  color: #F28F3B;
+  border: 2rpx solid #F28F3B;
+  border-radius: 60rpx;
+  padding: 24rpx 0;
+  font-size: 30rpx;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+
+.btn-secondary:active {
+  transform: scale(0.97);
+  box-shadow: 0 4rpx 20rpx rgba(242, 143, 59, 0.12);
+}
+
+.bottom-action {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(250,250,250,0.92);
+  backdrop-filter: blur(30rpx);
+  padding: 40rpx 40rpx 60rpx;
+  box-sizing: border-box;
+  z-index: 100;
+  box-shadow: 0 -10rpx 50rpx rgba(0,0,0,0.06);
+}
+
+.btn-primary {
+  background: linear-gradient(to right, #F28F3B, #ff7b00);
+  color: #fff;
+  font-weight: 600;
+  border-radius: 60rpx;
+  height: 100rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32rpx;
+  box-shadow: 0 10rpx 25rpx rgba(242, 143, 59, 0.35);
+  border: none;
+}
+
+/* 动画特效 */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(40rpx);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-up {
+  opacity: 0;
+  animation: fadeInUp 0.9s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+/* 加载状态 */
+.loading-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding-top: 450rpx;
+}
+
+.loader-dot {
+  width: 64rpx;
+  height: 64rpx;
+  border: 4rpx solid #e0e0e0;
+  border-top-color: #F28F3B;
+  border-radius: 50%;
+  animation: rotate 0.8s linear infinite;
+}
+
+@keyframes rotate {
+  to { transform: rotate(360deg); }
+}
+
+.loading-txt {
+  margin-top: 32rpx;
+  color: #a0a0a0;
+  font-size: 28rpx;
+  letter-spacing: 2rpx;
+}
